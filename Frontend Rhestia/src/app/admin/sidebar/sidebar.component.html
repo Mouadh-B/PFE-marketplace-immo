@@ -1,0 +1,58 @@
+<nav class="sidebar" style="width: 15%">
+  <div class="sidebar-header" style="padding-bottom: 5%">
+    <img src="assets/img/logo.png" alt="Logo">
+  </div>
+<hr>
+  <br>
+
+  <ul class="nav flex-column" style="padding-top: 5%">
+    <li class="nav-item" style="padding-top: 3%">
+      <a class="nav-link" routerLink="/dashboard" style="font-size: 120%"><i class="fi-apartment"></i>&nbsp;&nbsp;&nbsp;Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/adminuser" style="font-size: 120%">  <i class="fi-user"></i>&nbsp;&nbsp; Users</a>
+    </li>
+
+
+<!--    <li class="nav-item" style="padding-top: 3%">-->
+<!--      <a class="nav-link"  routerLinkActive="active" style="font-size: 120%"><i class="fi-list"></i>&nbsp;&nbsp; Annonces</a>-->
+<!--      <ul>-->
+<!--        <li><a  routerLink="/admin-annonce" >Vente</a></li>-->
+<!--        <li><a  routerLink="/admin-annonce" >Location</a></li>-->
+<!--      </ul>-->
+<!--    </li>-->
+
+    <li class="nav-item" style="padding-top: 3%">
+    <a class="nav-link"  routerLinkActive="active" style="padding-top: 3%;font-size: 120%" (click)="toggleMenu()"> <i class="fi-list"></i>&nbsp;&nbsp; Properties</a>
+
+      <div class="nav-item" style="padding-top: 3%">
+      <div class="menu-item" routerLink="/admin-rent" style="padding-left: 12%;padding-bottom: 2%">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-house-chosen"></i>&nbsp;&nbsp;Rent</div>
+      </div>
+
+      <div class="nav-item" style="padding-top: 3%">
+      <div class="menu-item" routerLink="/admin-sale" style="padding-left: 12%">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fi-home"></i>&nbsp;&nbsp;Sale</div>
+    </div>
+
+    </li>
+    <li class="nav-item" style="padding-top: 3%">
+      <a class="nav-link" routerLink="/contact"  style="font-size: 120%" ><i class="fi-messenger"> </i>&nbsp;&nbsp; Contacts</a>
+    </li>
+
+
+   <p  style="font-size: 100%;color:darkgrey;padding-top: 60%;padding-left: 10%">
+      rheastia4@gmail.com <br>
+     +216 92210210
+    </p>
+    <li class="nav-item" >
+      &nbsp;&nbsp; <i class="fi-telegram"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="fi-facebook"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="fi-instagram"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <i class="fi-whatsapp"></i>
+
+    </li>
+    <br>
+    <a class="card-nav-link" routerLink="/auth/signin" style="padding-left: 10%"><i class="fi-logout opacity-60 me-2"></i>Sign Out</a>
+
+  </ul>
+
+</nav>

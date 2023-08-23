@@ -1,0 +1,164 @@
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-md-6 left" style="width: 15%;">      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-6 right" style="width: 120%;padding-left: 15%">
+
+
+
+
+      <main class="page-wrapper">
+        <!-- Header-->
+
+        <!-- Page container-->
+        <div class="container-fluid mt-5 pt-5 p-0">
+          <div class="row g-0 mt-n3">
+
+          </div>
+          <!-- Page content-->
+          <div class="col-lg-12 col-xl-12 position-relative overflow-hidden pb-5 pt-4 px-3 px-xl-4 px-xxl-5">
+
+            <!-- Title-->
+            <div class="d-sm-flex align-items-center justify-content-between pb-3 pb-sm-4">
+              <h1 class="h2 mb-sm-0">SALE</h1><a class="d-inline-block fw-bold text-decoration-none py-1"
+                                                  href="javascript:void(0);" data-bs-toggle-class="invisible" data-bs-target="#map"
+                                                  (click)="openMapModal()"><i class="fi-map me-2"></i>Property Per Category </a>
+            </div>
+            <!-- Sorting-->
+            <div class="d-flex flex-sm-row flex-column align-items-sm-center align-items-stretch my-2">
+              <div class="d-flex align-items-center flex-shrink-0">
+                <label class="fs-sm me-2 pe-1 text-nowrap" for="sortby"><i
+                  class="fi-arrows-sort text-muted mt-n1 me-2"></i>Sort by:</label>
+                <select class="form-select form-select-sm" id="sortby" (click)="SortFilter();">
+                  <option>Newest</option>
+                  <option value="Atitle">Popularity</option>
+                  <option value="Aprice">Low - High Price</option>
+                  <option value="Dprice">High - Low Price</option>
+                  <option value="Dbad">High rating</option>
+                  <option value="Abad">Average Rating</option>
+                </select>
+              </div>
+              <hr class="d-none d-sm-block w-100 mx-4">
+              <div class="d-none d-sm-flex align-items-center flex-shrink-0 text-muted"><i
+                class="fi-check-circle me-2"></i><span class="fs-lg mt-n1">{{dataCount}} results</span></div>
+            </div>
+            <!-- Catalog grid-->
+            <div class="row g-4 py-4">
+
+              <!-- essai -->
+
+              <!--code correct -->
+              <!-- Item-->
+              <div class="col-sm-6 col-xl-4" *ngFor="let venteAnnonces of annonces ">
+
+                <div class="card shadow-sm card-hover border-0 h-100">
+                  <div class="tns-carousel-wrapper card-img-top card-img-hover"><a class="img-overlay"
+                                                                                   routerLink="/catalog/single-v2"></a>
+                    <div class="content-overlay end-0 top-0 pt-2 pe-2">
+                      <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"
+                              placement="left" ngbTooltip="Delete Property" (click)="deleteAnnonce(venteAnnonces.titre)"><i class="fi-trash"></i></button>
+                    </div>
+
+<!--                    <swiper [config]="config">-->
+<!--                      <div class="swiper-wrapper">-->
+<!--                        <div class="swiper-slide" *ngFor="let data of venteAnnonces.image">-->
+<!--                          <img src="{{venteAnnonces.img}}" alt="Image" class="h-100">-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </swiper>-->
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide" >
+                        <img [src]="images[annonces.indexOf(venteAnnonces)]" alt="Image" class="h-100">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body position-relative pb-3">
+                    <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">{{venteAnnonces.categorie}}</h4>
+                    <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link"
+                                                   routerLink="/catalog/single-v2">{{venteAnnonces.titre}}</a></h3>
+                    <p class="mb-2 fs-sm text-muted">
+                      <i class="fi-map-pin ms-1 mt-n1 fs-lg text-muted"></i>
+                      {{venteAnnonces.adresse}},{{venteAnnonces.ville}},{{venteAnnonces.region}}</p>
+
+                    <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>{{venteAnnonces.prix}}</div>
+                  </div>
+
+                  <div *ngIf="venteAnnonces.type_Annonce === 'Appartement' then AutreAppartement"></div>
+                  <ng-template #AutreAppartement>
+                    <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap" style="background-color: #FFDFDF; color: black; border-radius: 10px;">
+                <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.nbrChambresAppartement}}<i
+                  class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                      <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.nbrSalleDeBainAppartement}}<i
+                        class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                    </div>
+                  </ng-template>
+
+                  <div *ngIf="venteAnnonces.type_Annonce === 'Maison' then AutreMaison"></div>
+                  <ng-template #AutreMaison>
+                    <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap" style="background-color: #F4E3E2; color: black; border-radius: 10px;">
+                <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.nbrChambresMaison}}<i
+                  class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                      <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.nbrSalleDeBainMaison}}
+                        <i class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                    </div>
+                  </ng-template>
+
+                  <div *ngIf="venteAnnonces.type_Annonce === 'Ferme' then AutreFerme"></div>
+                  <ng-template #AutreFerme>
+                    <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap" style="background-color: #EAFAF5; color: black; border-radius: 10px;">
+                <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.maisonFerme}}<i
+                  class="fi-house-chosen ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                    </div>
+                  </ng-template>
+
+                  <div *ngIf="venteAnnonces.type_Annonce === 'Immeuble' then AutreImmeuble"></div>
+                  <ng-template #AutreImmeuble>
+                    <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
+                <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.nbrEtagesImmeuble}}<i
+                  class="fi-building ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                      <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.nbrPiecesImmeuble}}<i
+                        class="fi-real-estate-house ms-1 mt-n1 fs-lg text-muted"></i>
+                </span>
+                    </div>
+                  </ng-template>
+
+                  <div *ngIf="venteAnnonces.type_Annonce === 'Local' then AutreLocal"></div>
+                  <ng-template #AutreLocal>
+                    <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap" style="background-color: #FFDFDF; color: black; border-radius: 10px;">
+                      <i class="fi-ticket ms-1 mt-n1 fs-lg text-muted"></i>
+                      <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.typeLocal}}
+                </span>
+                    </div>
+                  </ng-template>
+
+                  <div *ngIf="venteAnnonces.type_Annonce === 'Terrain' then AutreTerrain"></div>
+                  <ng-template #AutreTerrain>
+                    <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap">
+                <span class="d-inline-block mx-1 px-2 fs-sm">{{venteAnnonces.typeTerrain}}
+                </span>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div >
+
+
+        </div></main></div></div></div>

@@ -1,0 +1,93 @@
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-md-6 left" style="width: 15%;">      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-6 right" style="width: 80%;padding-left: 4%;padding-top: 5%;">
+      <div ><h3>Liste Utilisateurs</h3></div>
+      <div >
+
+        <style>
+          .actions-header {
+            padding-left: 60px; /* Adjust the spacing as needed */
+          }
+        </style>
+        <div class="form-row " >
+          <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+            <tr>
+              <th>FullName</th>
+              <th>UserName</th>
+              <th>Email</th>
+              <th> Status</th>
+              <th class="actions-header">Actions</th>
+
+            </tr>
+            </thead>
+            <tbody >
+            <tr *ngFor="let c of utilisateur">
+              <td>
+<!--                <div class="d-flex align-items-center" >-->
+<!--                  <img-->
+<!--                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"-->
+<!--                    alt=""-->
+<!--                    style="width: 45px; height: 45px"-->
+<!--                    class="rounded-circle"-->
+<!--                  />-->
+<!--                  <div class="ms-3">-->
+<!--                    <p class="fw-bold mb-1">{{c.nom}}</p>-->
+<!--                    <p class="text-muted mb-0">{{c.email}}</p>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <div class="d-flex align-items-center">
+                  <img
+                    [src]="c.genre === 'HOMME' ? 'https://mdbootstrap.com/img/new/avatars/8.jpg' : 'https://mdbootstrap.com/img/new/avatars/14.jpg'"
+                    alt=""
+                    style="width: 45px; height: 45px"
+                    class="rounded-circle"
+                  />
+                  <div class="ms-3">
+                    <p class="fw-bold mb-1">{{c.nom}}</p>
+                    <p class="text-muted mb-0">{{c.email}}</p>
+                  </div>
+                </div>
+
+              </td>
+              <td>
+                <p class="fw-normal mb-1">{{c.nomUtilisateur}}</p>
+
+              </td>
+              <td>
+                <p class="fw-normal mb-1">{{c.numTel}}</p>
+              </td>
+              <td >
+                <span *ngIf="c.active"  style="color: green">Active</span>
+                <span *ngIf="!c.active" style="color: red">Blocked</span>
+              </td>
+
+
+
+              <td>
+
+
+                <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="deleteUser(c.idUtilisateur) ">
+                  <i class="fi-trash" style="width: 100%" style="font-size: 1.5em;"></i>
+                </button>
+
+                  <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="blockUser(c.idUtilisateur)">
+                  <i class="fi-lock"  style="font-size: 1.5em;"></i>
+
+                </button>
+                  <button type="button" class="btn btn-link btn-sm btn-rounded" (click)="unblockUser(c.idUtilisateur)">
+                    <i class="fi-unlock" style="width: 100%" style="font-size: 1.5em;"></i>
+                  </button>
+
+              </td>
+
+            </tr>
+
+            </tbody>
+          </table>
+
+    </div>
+  </div>
+    </div></div></div>

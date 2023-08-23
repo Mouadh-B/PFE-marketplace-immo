@@ -1,0 +1,34 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      a {
+        display: block;
+        padding: 10px 15px;
+        color: #333;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #e2e6ea;
+        }
+
+        &.active {
+          background-color: #007bff;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

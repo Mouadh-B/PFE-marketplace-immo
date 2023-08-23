@@ -1,0 +1,639 @@
+<main class="page-wrapper" xmlns="http://www.w3.org/1999/html">
+  <!-- Header-->
+  <app-header id="top"></app-header>
+
+  <!-- Page container-->
+  <div class="container mt-5 mb-md-4 py-5">
+    <div class="row">
+      <!-- Page content-->
+      <form (ngSubmit)="onSubmit()">
+      <div class="col-lg-8">
+        <!-- Breadcrumb-->
+        <app-breadcrumbs [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>
+        <!-- Title-->
+        <div class="mb-4">
+          <h1 class="h2 mb-0">Add property</h1>
+          <div class="d-lg-none pt-3 mb-2">65% content filled</div>
+          <div class="progress d-lg-none mb-4" style="height: .25rem;">
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <!-- Basic info-->
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info" #infoGenerale>
+          <h2 class="h4 mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+          <div class="mb-3">
+            <label class="form-label" for="ap-title">Title <span class="text-danger">*</span></label>
+            <input [(ngModel)]="annonce.titre" name="titre" class="form-control" type="text" id="ap-title" placeholder="Title for your property" value="Pine Apartments" required><span class="form-text">48 characters left</span>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-category">Category<span class="text-danger">*</span></label>
+              <select [(ngModel)]="annonce.categorie" name="_categorie" class="form-select" id="ap-category" required  #categorie>
+                <option value="" disabled selected>Choose Category</option>
+                <option value="VENTE">Sale</option>
+                <option value="LOCATION">Rent</option>
+              </select>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-type">Property Type<span class="text-danger">*</span></label>
+              <select [(ngModel)]="annonce.type_Annonce" name="type_Annonce" class="form-select" id="ap-type" required #typeDuBien>
+                <option value="" disabled selected>Choose Property Type</option>
+                <option value="Appartement">Appartment</option>
+                <option value="Maison">House</option>
+                <option value="Immeuble">Villa</option>
+                  <option value="Local">Land</option>
+                <option value="Terrain">Office</option>
+                <option value="Ferme">Farm</option>
+              </select>
+            </div>
+          </div>
+       <!--
+          <div class="form-label fw-bold pt-3 pb-2">Are you listing on Finder as part of a company?</div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="ap-company" name="ap-business-type">
+            <label class="form-check-label" for="ap-company">I am a registered business</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="ap-individual" name="ap-business-type" checked>
+            <label class="form-check-label" for="ap-individual">I am a private seller</label>
+          </div>
+        -->
+        </section>
+        <!-- Location-->
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="location" #localisation>
+          <h2 class="h4 mb-4"><i class="fi-map-pin text-primary fs-5 mt-n1 me-2"></i>Location</h2>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-country">Region <span class="text-danger">*</span></label>
+              <select [(ngModel)]="annonce.region" name="region" class="form-select" id="ap-country" required>
+                <option value="" disabled selected> Choisir la region</option>
+                <option value="TUNIS" >TUNIS</option>
+                <option value="ARIANA">ARIANA</option>
+                <option value="BEN_AROUS">BEN_AROUS</option>
+                <option value="MANOUBA">MANOUBA</option>
+                <option value="NABEUL">NABEUL</option>
+                <option value="ZAGHOUAN">ZAGHOUAN</option>
+                <option value="BIZERTE">BIZERTE</option>
+                <option value="BEJA">BEJA</option>
+                <option value="JENDOUBA">JENDOUBA</option>
+                <option value="KEF">KEF</option>
+                <option value="SILIANA">SILIANA</option>
+                <option value="SOUSSE">SOUSSE</option>
+                <option value="MONASTIR">MONASTIR</option>
+                <option value="MAHDIA">MAHDIA</option>
+                <option value="SFAX">SFAX</option>
+                <option value="KAIROUAN">KAIROUAN</option>
+                <option value="KASSERINE">KASSERINE</option>
+                <option value="SIDI_BOUZID">SIDI_BOUZID</option>
+                <option value="GAFSA">GAFSA</option>
+                <option value="TOZEUR">TOZEUR</option>
+                <option value="KEBILI">KEBILI</option>
+                <option value="GABES">GABES</option>
+                <option value="MEDENINE">MEDENINE</option>
+                <option value="TATAOUINE">TATAOUINE</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="ap-title">City <span class="text-danger">*</span></label>
+              <input [(ngModel)]="annonce.ville" name="ville" class="form-control" type="text" id="ap-city" placeholder="Enter your city..." required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="ap-address">Address<span class="text-danger">*</span></label>
+            <input [(ngModel)]="annonce.adresse" name="adresse" class="form-control" type="text" id="ap-address" placeholder="Enter your address..." required>
+          </div>
+<!--          <div class="form-label fw-bold pt-3 pb-2">Display on the map</div>-->
+         <!-- <agm-map [latitude]="latitude" [longitude]="longitude" class="interactive-map rounded-3" style="height: 300px"></agm-map> -->
+        </section>
+        <!-- Property details-->
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="details" #details>
+          <h2 class="h4 mb-4"><i class="fi-edit text-primary fs-5 mt-n1 me-2"></i>Property details</h2>
+          <div class="mb-4" style="max-width: 25rem;">
+            <label class="form-label" for="ap-area">Total area, m²</label>
+            <input class="form-control" type="number" id="ap-area" min="20" [(ngModel)]="annonce.surface" name="surface" required>
+          </div>
+
+          <div *ngIf="typeDuBien.value === 'Appartement' then chambreAppartement"></div>
+          <ng-template #chambreAppartement>
+          <div class="mb-4">
+            <label class="form-label d-block fw-bold mb-2 pb-1">bedrooms</label>
+            <div   class="btn-group btn-group-sm" role="group" aria-label="Nombre de chambres">
+              <input class="btn-check form-control" name="nbrChambresAppartement" type="radio" id="studio" [(ngModel)]="appartement.nbrChambresAppartement" value="0">
+              <label class="btn btn-outline-secondary fw-normal" for="studio">0</label>
+              <input class="btn-check form-control" type="radio" id="bedroomsA-1" name="nbrChambresAppartement" [(ngModel)]="appartement.nbrChambresAppartement" value="1">
+              <label class="btn btn-outline-secondary fw-normalA" for="bedroomsA-1">1</label>
+              <input class="btn-check form-control" type="radio" id="bedroomsA-2" name="nbrChambresAppartement" [(ngModel)]="appartement.nbrChambresAppartement" value="2">
+              <label class="btn btn-outline-secondary fw-normal" for="bedroomsA-2">2</label>
+              <input class="btn-check form-control" type="radio" id="bedroomsA-3" name="nbrChambresAppartement" [(ngModel)]="appartement.nbrChambresAppartement" value="3">
+              <label class="btn btn-outline-secondary fw-normal" for="bedroomsA-3">3</label>
+              <input class="btn-check form-control" type="radio" id="bedroomsA-4" name="nbrChambresAppartement" [(ngModel)]="appartement.nbrChambresAppartement" value="4">
+              <label class="btn btn-outline-secondary fw-normal" for="bedroomsA-4">4</label>
+              <input class="btn-check form-control" type="radio" id="bedroomsA-5" name="nbrChambresAppartement" [(ngModel)]="appartement.nbrChambresAppartement" value="5">
+              <label class="btn btn-outline-secondary fw-normal" for="bedroomsA-5">5</label>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label d-block fw-bold mb-2 pb-1">bathroom</label>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Choose number of bathrooms">
+              <input class="btn-check form-control" type="radio" id="bathroomsA-1" name="nbrSalleDeBainAppartement" [(ngModel)]="appartement.nbrSalleDeBainAppartement" value="1">
+              <label class="btn btn-outline-secondary fw-normal" for="bathroomsA-1" >1</label>
+              <input class="btn-check form-control" type="radio" id="bathroomsA-2" name="nbrSalleDeBainAppartement" [(ngModel)]="appartement.nbrSalleDeBainAppartement" value="2">
+              <label class="btn btn-outline-secondary fw-normal" for="bathroomsA-2">2</label>
+              <input class="btn-check form-control" type="radio" id="bathroomsA-3" name="nbrSalleDeBainAppartement" [(ngModel)]="appartement.nbrSalleDeBainAppartement" value="3">
+              <label class="btn btn-outline-secondary fw-normal" for="bathroomsA-3">3</label>
+              <input class="btn-check form-control" type="radio" id="bathroomsA-4" name="nbrSalleDeBainAppartement" [(ngModel)]="appartement.nbrSalleDeBainAppartement" value="4">
+              <label class="btn btn-outline-secondary fw-normal" for="bathroomsA-4">4</label>
+              <input class="btn-check form-control" type="radio" id="bathroomsA-5" name="nbrSalleDeBainAppartement" [(ngModel)]="appartement.nbrSalleDeBainAppartement" value="5">
+              <label class="btn btn-outline-secondary fw-normal" for="bathroomsA-5">5</label>
+            </div>
+          </div>
+          </ng-template>
+
+          <div *ngIf="typeDuBien.value === 'Maison' then chambreMaison"></div>
+          <ng-template #chambreMaison>
+            <div class="mb-4">
+              <label class="form-label d-block fw-bold mb-2 pb-1">badroom</label>
+              <div class="btn-group btn-group-sm" role="group" aria-label="Nombre de chambres">
+                <input class="btn-check form-control" type="radio" id="studioM" name="nbrChambresMaison" [(ngModel)]="maison.nbrChambresMaison" value="0">
+                <label class="btn btn-outline-secondary fw-normal" for="studio">0</label>
+                <input class="btn-check form-control" type="radio" id="bedroomsM-1" name="nbrChambresMaison" [(ngModel)]="maison.nbrChambresMaison" value="1">
+                <label class="btn btn-outline-secondary fw-normal" for="bedroomsM-1">1</label>
+                <input class="btn-check form-control" type="radio" id="bedroomsM-2" name="nbrChambresMaison" [(ngModel)]="maison.nbrChambresMaison" value="2">
+                <label class="btn btn-outline-secondary fw-normal" for="bedroomsM-2">2</label>
+                <input class="btn-check form-control" type="radio" id="bedroomsM-3" name="nbrChambresMaison" [(ngModel)]="maison.nbrChambresMaison" value="3">
+                <label class="btn btn-outline-secondary fw-normal" for="bedroomsM-3">3</label>
+                <input class="btn-check form-control" type="radio" id="bedroomsM-4" name="nbrChambresMaison" [(ngModel)]="maison.nbrChambresMaison" value="4">
+                <label class="btn btn-outline-secondary fw-normal" for="bedroomsM-4">4</label>
+                <input class="btn-check form-control" type="radio" id="bedroomsM-5" name="nbrChambresMaison" [(ngModel)]="maison.nbrChambresMaison" value="5">
+                <label class="btn btn-outline-secondary fw-normal" for="bedroomsM-5">5</label>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="form-label d-block fw-bold mb-2 pb-1">bathroom</label>
+              <div class="btn-group btn-group-sm" role="group" aria-label="Choose number of bathrooms">
+                <input class="btn-check form-control" type="radio" id="bathroomsM-1" name="nbrSalleDeBainMaison" [(ngModel)]="maison.nbrSalleDeBainMaison" value="1">
+                <label class="btn btn-outline-secondary fw-normal" for="bathroomsM-1">1</label>
+                <input class="btn-check form-control" type="radio" id="bathroomsM-2" name="nbrSalleDeBainMaison" [(ngModel)]="maison.nbrSalleDeBainMaison" value="2">
+                <label class="btn btn-outline-secondary fw-normal" for="bathroomsM-2">2</label>
+                <input class="btn-check form-control" type="radio" id="bathroomsM-3" name="nbrSalleDeBainMaison" [(ngModel)]="maison.nbrSalleDeBainMaison" value="3">
+                <label class="btn btn-outline-secondary fw-normal" for="bathroomsM-3">3</label>
+                <input class="btn-check form-control" type="radio" id="bathroomsM-4" name="nbrSalleDeBainMaison" [(ngModel)]="maison.nbrSalleDeBainMaison" value="4">
+                <label class="btn btn-outline-secondary fw-normal" for="bathroomsM-4">4</label>
+                <input class="btn-check form-control" type="radio" id="bathroomsM-5" name="nbrSalleDeBainMaison" [(ngModel)]="maison.nbrSalleDeBainMaison" value="5">
+                <label class="btn btn-outline-secondary fw-normal" for="bathroomsM-5">5</label>
+              </div>
+            </div>
+          </ng-template>
+
+
+          <div class="mb-4">
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div *ngIf="typeDuBien.value === 'Appartement' then Appartement"></div>
+                <ng-template #Appartement>
+
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label" for="ap-category">State<span class="text-danger">*</span></label>
+                    <select [(ngModel)]="annonce.etat" name="etat" class="form-select" id="etat1" required>
+                      <option value="" disabled selected>Local type</option>
+                      <option value="Nouveau">New</option>
+                      <option value="Bon_Etat">Good condition</option>
+                      <option value="A_renover">To renovate</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label>Floor number</label>
+                    <input class="form-control w-100 me-2 mb-2" [(ngModel)]="appartement.numEtageAppartement" name="numEtageAppartement" type="number" id="numEtages" required>
+                  </div>
+
+                  <div>
+                  <label class="form-label d-block fw-bold mb-2 pb-1">Amenities </label>
+                    <div class="form-check">
+                      <input class="form-check-input" [(ngModel)]="appartement.balconAppartement" name="balconAppartement" type="checkbox" id="balcony">
+                      <label class="form-check-label" for="balcony">Balcony</label>
+                    </div>
+
+                    <div class="form-check" >
+                      <input class="form-check-input"[(ngModel)]="appartement.equipementsCuisineAppartement" name="equipementsCuisineAppartement" type="checkbox" id="kitchenAppart" checked>
+                      <label class="form-check-label" for="kitchenAppart">Equipped kitchen</label>
+                    </div>
+
+                    <div class="form-check" >
+                      <input class="form-check-input" [(ngModel)]="appartement.climatisationAppartement" name="climatisationAppartement" type="checkbox" id="air-conditionAppart" checked>
+                      <label class="form-check-label" for="air-conditionAppart">Air conditioner</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" [(ngModel)]="appartement.chauffageAppartement" name="chauffageAppartement" type="checkbox" id="heatingAppart" checked>
+                      <label class="form-check-label" for="heatingAppart">Heating</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" [(ngModel)]="appartement.parkingAppartement" name="parkingAppartement" type="checkbox" id="free-parkingAppart" checked>
+                      <label class="form-check-label" for="free-parkingAppart">Parking</label>
+                    </div>
+                  </div>
+
+                </ng-template>
+
+                <div *ngIf="typeDuBien.value === 'Maison' then Maison "></div>
+                <ng-template #Maison>
+
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label" for="ap-category">State<span class="text-danger">*</span></label>
+                    <select [(ngModel)]="annonce.etat" name="etat" class="form-select" id="etat2" required>
+                      <option value="" disabled selected>Local Type</option>
+                      <option value="Nouveau">New</option>
+                      <option value="Bon_Etat">Good condition</option>
+                      <option value="A_renover">To renovate</option>
+                    </select>
+                  </div>
+
+                  <label class="form-label d-block fw-bold mb-2 pb-1">Amenities </label>
+                    <div class="form-check" >
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="maison.terrrasseMaison" name="terrrasseMaison" id="terrasse">
+                      <label class="form-check-label" for="terrasse">Terrace</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="maison.garageMaison" name="garageMaison" id="garage">
+                      <label class="form-check-label" for="garage">Garage</label>
+                    </div>
+                    <div class="form-check" >
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="maison.piscineMaison" name="piscineMaison" id="poolMaison">
+                      <label class="form-check-label" for="poolMaison">Pool</label>
+                    </div>
+                    <div class="form-check" >
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="maison.jardinMaison" name="jardinMaison" id="JardinMaison">
+                      <label class="form-check-label" for="JardinMaison">Garden</label>
+                    </div>
+
+                  <div class="form-check" >
+                    <input class="form-check-input"[(ngModel)]="appartement.equipementsCuisineAppartement" name="equipementsCuisineAppartement" type="checkbox" id="kitchenAppart" checked>
+                    <label class="form-check-label" for="kitchenAppart">Equipped kitchen</label>
+                  </div>
+
+                  <div class="form-check" >
+                    <input class="form-check-input" [(ngModel)]="appartement.climatisationAppartement" name="climatisationAppartement" type="checkbox" id="air-conditionAppart" checked>
+                    <label class="form-check-label" for="air-conditionAppart">Air conditioner</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" [(ngModel)]="appartement.chauffageAppartement" name="chauffageAppartement" type="checkbox" id="heatingAppart" checked>
+                    <label class="form-check-label" for="heatingAppart">Heating</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="maison.camerasMaison" name="camerasMaison" id="security-camerasMaison">
+                    <label class="form-check-label" for="security-camerasMaison">Security camera</label>
+                  </div>
+
+                </ng-template>
+
+                <div *ngIf="typeDuBien.value === 'Terrain' then Terrain "></div>
+                <ng-template #Terrain>
+                  <label class="form-label d-block fw-bold mb-2 pb-1">Commodités </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="terrain.titreBleuTerrain" name="titreBleuTerrain"  id="titreBleu">
+                    <label class="form-check-label" for="titreBleu">Titre Bleu</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="terrain.viabilisationTerrain" name="viabilisationTerrain" id="ElecEtEau">
+                    <label class="form-check-label" for="ElecEtEau">Eléctricité et eau</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="terrain.planteTerrain" name="planteTerrain" id="plante">
+                    <label class="form-check-label" for="plante">terrain agricol planté</label>
+                  </div>
+                </ng-template>
+
+                <div *ngIf="typeDuBien.value === 'Immeuble' then Immeuble "></div>
+                <ng-template #Immeuble>
+                <div>
+                  <label>Number of floors</label>
+                  <input class="form-control w-100 me-2 mb-2" [(ngModel)]="immeuble.nbrEtagesImmeuble" name="nbrEtagesImmeuble" type="number" id="nbrEtages" required>
+                </div>
+                <div>
+                  <label>Nombre de pièces</label>
+                  <input class="form-control w-100 me-2 mb-2" [(ngModel)]="immeuble.nbrPiecesImmeuble" name="nbrPiecesImmeuble" type="number" id="nbrPièces" required>
+                </div>
+
+                  <div>
+                    <label class="form-label d-block fw-bold mb-2 pb-1">Amenities </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="immeuble.parkingImmeuble" name="parkingImmeuble" id="free-parkingImmeuble" >
+                    <label class="form-check-label" for="free-parkingImmeuble">Parking</label>
+                  </div>
+                  <div class="form-check" >
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="immeuble.piscineImmeuble" name="piscineImmeuble" id="poolImmeuble">
+                    <label class="form-check-label" for="poolImmeuble">Pool</label>
+                  </div>
+                    <div class="form-check" >
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="maison.jardinMaison" name="jardinMaison" id="JardinMaison">
+                      <label class="form-check-label" for="JardinMaison">Garden</label>
+                    </div>
+
+                    <div class="form-check" >
+                      <input class="form-check-input"[(ngModel)]="appartement.equipementsCuisineAppartement" name="equipementsCuisineAppartement" type="checkbox" id="kitchenAppart" checked>
+                      <label class="form-check-label" for="kitchenAppart">Equipped kitchen</label>
+                    </div>
+
+                    <div class="form-check" >
+                      <input class="form-check-input" [(ngModel)]="appartement.climatisationAppartement" name="climatisationAppartement" type="checkbox" id="air-conditionAppart" checked>
+                      <label class="form-check-label" for="air-conditionAppart">Air conditioner</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" [(ngModel)]="appartement.chauffageAppartement" name="chauffageAppartement" type="checkbox" id="heatingAppart" checked>
+                      <label class="form-check-label" for="heatingAppart">Heating</label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" [(ngModel)]="maison.camerasMaison" name="camerasMaison" id="security-camerasMaison">
+                      <label class="form-check-label" for="security-camerasMaison">Security camera</label>
+                    </div>
+
+
+                  </div>
+
+                </ng-template>
+
+                <div *ngIf="typeDuBien.value === 'Local' then Local"></div>
+                <ng-template #Local>
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label" for="ap-category">Etat<span class="text-danger">*</span></label>
+                    <select [(ngModel)]="annonce.etat" name="etat" class="form-select" id="etat" required>
+                      <option value="" disabled selected>Etat</option>
+                      <option value="Nouveau">Nouveau</option>
+                      <option value="Bon_Etat">Bon_Etat</option>
+                      <option value="A_renover">A_renover</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-6 mb-3">
+                    <label class="form-label" for="ap-category">Type du local<span class="text-danger">*</span></label>
+                    <select [(ngModel)]="local.typeLocal" name="typeLocal" class="form-select" id="typeLocal" required>
+                      <option value="" disabled selected>Type du local</option>
+                      <option value="LOCAL_COMMERCIAL">Local commercial</option>
+                      <option value="LOCAL_INDUSTRIEL">Local industriel</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="form-label d-block fw-bold mb-2 pb-1">Commodités </label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="local.equipementLocal" name="equipementLocal" id="equipementLocal" >
+                  <label class="form-check-label" for="equipementLocal">Local équipé</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="local.camerasLocal" name="camerasLocal" id="security-camerasLocal">
+                  <label class="form-check-label" for="security-camerasLocal">Caméra de sécurité</label>
+                </div>
+                  </div>
+                </ng-template>
+
+                <div *ngIf="typeDuBien.value === 'Ferme' then Ferme"></div>
+                <ng-template #Ferme>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="ferme.maisonFerme" name="maisonFerme" id="maisonFerme">
+                    <label class="form-check-label" for="maisonFerme">il y a une maison, Villa</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="ferme.ecurieFerme" name="ecurieFerme" id="ecurieFerme">
+                    <label class="form-check-label" for="ecurieFerme">Ecurie</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="ferme.grangeFerme" name="grangeFerme" id="grangeFerme">
+                    <label class="form-check-label" for="grangeFerme">Grange</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="ferme.serreFerme" name="serreFerme" id="serreFerme">
+                    <label class="form-check-label" for="serreFerme">Serre</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="ferme.puitFerme" name="puitFerme" id="puitFerme">
+                    <label class="form-check-label" for="puitFerme">Puit</label>
+                  </div>
+                </ng-template>
+
+              </div>
+            </div>
+          </div>
+
+          <label class="form-label" for="ap-description">Add a description </label>
+          <textarea [(ngModel)]="annonce.description" name="description" class="form-control" id="ap-description" rows="5" placeholder="Describe your proprety"></textarea><span class="form-text">Don't hesitate to add extra informations here</span>
+        </section>
+        <!-- Price-->
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="price" #prix>
+          <h2 class="h4 mb-4"><i class="fi-cash text-primary fs-5 mt-n1 me-2"></i>Price</h2>
+          <label class="form-label" for="ap-price">Prix <span class="text-danger">*</span></label>
+          <div class="d-sm-flex">
+
+            <select class="form-select w-25 me-2 mb-2">
+              <option value="dnt" disabled selected>Dinar</option>
+<!--              <option value="usd">&#36;</option>-->
+<!--              <option value="eur">&#8364;</option>-->
+            </select>
+
+            <input class="form-control w-100 me-2 mb-2" [(ngModel)]="annonce.prix" name="prix" type="number" id="ap-price" min="200" step="50" required>
+            <div *ngIf="categorie.value === 'LOCATION' then location "></div>
+            <ng-template #location>
+            <select class="form-select w-50 mb-2" >
+              <option value="mois" selected>Par mois</option>
+              <option value="ans" >Par ans</option>
+              <option value="semaine" >Par semaine</option>
+            </select>
+            </ng-template>
+          </div>
+        </section>
+        <!-- Photos / video-->
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="photos" #photos>
+          <h2 class="h4 mb-4"><i class="fi-image text-primary fs-5 mt-n1 me-2"></i>Photos</h2>
+          <div class="alert alert-info mb-4" role="alert">
+            <div class="d-flex"><i class="fi-alert-circle me-2 me-sm-3"></i>
+              <p class="fs-sm mb-1">add photos</p>
+            </div>
+          </div>
+          <!-- <dropzone class="file-uploader dropzone_sec"></dropzone> -->
+          <!-- <div id="drag-drop-area">
+            <input type="file" multiple id="file-input" style="display: none;" draggable="true">
+            <label for="file-input">Drag and drop files here</label>
+          </div> -->
+          <div class="container row">
+            <div class="col-md-12">
+              <h1>Upload Image</h1>
+            </div>
+          </div>
+
+          <div class="container row">
+            <div id="drag-drop-area" class="d-flex flex-wrap">
+              <div class="image-container" *ngFor="let image of annonce.images">
+                <img [src]="image.url" alt="Image">
+              </div>
+              <input type="file" multiple (change)="onSelectFile($event)" draggable="true" [(ngModel)]="images" name="image">
+            </div>
+          </div>
+<!--          <div class="container row">-->
+<!--            <div class="col-md-12">-->
+<!--              <h1>Upload Image</h1>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="container row">-->
+<!--            <div id="drag-drop-area">-->
+<!--              <input type="file" multiple (change)="onSelectFile($event)" draggable="true" [(ngModel)]="images" name="image">-->
+<!--              <img [src]="imgURL" height="200" *ngIf="imgURL">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="container row">-->
+<!--            <div id="drag-drop-area" class="d-flex flex-wrap">-->
+<!--              <input type="file" multiple (change)="onSelectFile($event)" draggable="true" [(ngModel)]="images" name="image">-->
+<!--              <div class="image-container" *ngFor="let image of annonce.images">-->
+<!--                <img [src]="image.url" alt="Image">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+
+          <hr />
+          <div class="container row">
+            <div class="col-md-12">
+              <div *ngIf=message>{{message}}</div>
+            </div>
+          </div>
+        </section>
+
+        <div class="col-sm-6 mb-3">
+          <label class="form-label" for="ap-phone">Phone number <span class="text-danger">*</span></label>
+          <input class="form-control" type="tel"  data-format="custom" name="numTel"  [(ngModel)]="annonce.numTel"  value="" placeholder="+216********">
+        </div>
+        <!-- Contacts-->
+    <!--
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="contacts" #contacts>
+          <h2 class="h4 mb-4"><i class="fi-phone text-primary fs-5 mt-n1 me-2"></i>Contacts</h2>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-fn">First name <span class="text-danger">*</span></label>
+              <input class="form-control" type="text" id="ap-fn" value="Annette" placeholder="Enter your first name" required>
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-sn">Second name <span class="text-danger">*</span></label>
+              <input class="form-control" type="text" id="ap-sn" value="Black" placeholder="Enter your second name" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-email">Email<span class="text-danger">*</span></label>
+              <input class="form-control" type="text" id="ap-email" value="annette_black@email.com" placeholder="Enter your email">
+            </div>
+            <div class="col-sm-6 mb-3">
+              <label class="form-label" for="ap-phone">Phone number <span class="text-danger">*</span></label>
+              <input class="form-control" type="tel" id="ap-phone" data-format="custom" data-delimiter="-" data-blocks="3 3 4" value="302-555-0107" placeholder="000-000-0000">
+            </div>
+          </div>
+          <label class="form-label" for="ap-company-name">Company</label>
+          <input class="form-control" type="text" id="ap-company-name" placeholder="Enter company name">
+        </section>
+        -->
+        <!-- Action buttons -->
+        <section class="d-sm-flex justify-content-between pt-2"><a class="btn btn-outline-primary btn-lg d-block mb-3 mb-sm-2" href="javascript:void(0);" data-bs-toggle="modal" (click)="openReviewModal(reviewContent)"><i class="fi-eye-on ms-n1 me-2"></i>Visualiser</a></section>
+
+
+           <section class="d-sm-flex justify-content-between pt-2"> <button class="btn btn-primary btn-lg d-block mb-2"  type="submit" #ajouterAnnonce>Save and continue</button></section>
+        <div *ngIf="showSuccess" class="alert alert-success">
+          <strong>Success</strong> Your ad has been successfully added
+        </div>
+
+      </div>
+      </form>
+      <!-- Progress of completion-->
+    </div>
+
+  </div>
+
+  <!-- Preview modal-->
+  <ng-template #reviewContent role="document" let-modal>
+    <div class="modal-header d-block d-sm-flex">
+      <h3 class="h5 text-muted fw-normal modal-title d-none d-sm-block">Visualisation des informations</h3>
+      <div class="d-flex align-items-center"><a class="btn btn-primary btn-sm me-4" routerLink="/vendor/property-promotion" (click)="modal.dismiss('Cross click')">Enregitrer et continuer</a><span class="fs-xs text-muted ms-auto me-2">[ESC]</span>
+        <button class="btn-close ms-0" type="button" data-bs-dismiss="modal" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+    </div>
+    <div class="modal-body p-0">
+      <div class="container mt-2 mt-sm-0 py-4 py-sm-5">
+        <h1 class="h2 mb-2" [(ngModel)]="annonce.titre" name="titre">Titre</h1>
+        <p class="mb-2 pb-1 fs-lg">28 Jackson Ave Long Island City, NY 67234</p>
+        <ul class="d-flex mb-4 list-unstyled">
+          <li class="me-3 pe-3 border-end"><b class="me-1">4</b><i class="fi-bed mt-n1 lead align-middle text-muted"></i></li>
+          <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i class="fi-bath mt-n1 lead align-middle text-muted"></i></li>
+          <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i class="fi-car mt-n1 lead align-middle text-muted"></i></li>
+          <li><b>56 </b>sq.m</li>
+        </ul>
+        <div class="overflow-auto pb-3 px-2 mx-n2 mb-4" data-simplebar>
+          <div class="row g-2 g-md-3" style="min-width: 30rem;">
+            <div class="col-8"><img class="rounded rounded-md-3" src="assets/img/real-estate/single/01.jpg" alt="Gallery thumbnail"></div>
+            <div class="col-4"><img class="rounded rounded-md-3 mb-2 mb-md-3" src="assets/img/real-estate/single/02.jpg" alt="Gallery thumbnail"><img class="rounded rounded-md-3" src="assets/img/real-estate/single/03.jpg" alt="Gallery thumbnail"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7 mb-md-0 mb-4"><span class="badge bg-success me-2 mb-3">Verified</span><span class="badge bg-info me-2 mb-3">New</span>
+            <h2 class="h3 mb-4 pb-4 border-bottom">$2,000<span class="d-inline-block ms-1 fs-base fw-normal text-body">/month</span></h2>
+            <!-- Overview-->
+            <div class="mb-4 pb-md-3">
+              <h3 class="h4">Overview</h3>
+              <p class="mb-1">Lorem tincidunt lectus vitae id vulputate diam quam. Imperdiet non scelerisque turpis sed etiam ultrices. Blandit mollis dignissim egestas consectetur porttitor. Vulputate dolor pretium, dignissim eu augue sit ut convallis. Lectus est, magna urna feugiat sed ultricies sed in lacinia. Fusce potenti sit id pharetra vel ornare. Vestibulum sed tellus ullamcorper arcu.</p>
+              <div class="collapse" id="seeMoreOverview" #overviewcollapse="ngbCollapse" [(ngbCollapse)]="overviewColleaps">
+                <p class="mb-1">Asperiores eos molestias, aspernatur assumenda vel corporis ex, magni excepturi totam exercitationem quia inventore quod amet labore impedit quae distinctio? Officiis blanditiis consequatur alias, atque, sed est incidunt accusamus repudiandae tempora repellendus obcaecati delectus ducimus inventore tempore harum numquam autem eligendi culpa.</p>
+              </div><a class="collapse-label collapsed" href="javascript:void(0);" (click)="overviewcollapse.toggle()"
+                       [attr.aria-expanded]="!overviewColleaps" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreOverview"></a>
+            </div>
+            <!-- Property Details-->
+            <div class="mb-4 pb-md-3">
+              <h3 class="h4">Property Details</h3>
+              <ul class="list-unstyled mb-0">
+                <li><b>Type: </b>apartment</li>
+                <li><b>Apartment area: </b>56 sq.m</li>
+                <li><b>Built: </b>2015</li>
+                <li><b>Bedrooms: </b>4</li>
+                <li><b>Bathrooms: </b>2</li>
+                <li><b>Parking places: </b>2</li>
+                <li><b>Pets allowed: </b>No</li>
+              </ul>
+            </div>
+            <!-- Amenities-->
+            <div class="mb-sm-3">
+              <h3 class="h4">Amenities</h3>
+              <ul class="list-unstyled row row-cols-lg-3 row-cols-md-2 row-cols-1 gy-1 mb-1 text-nowrap">
+                <li class="col"><i class="fi-wifi mt-n1 me-2 fs-lg align-middle"></i>WiFi</li>
+                <li class="col"><i class="fi-thermometer mt-n1 me-2 fs-lg align-middle"></i>Heating</li>
+                <li class="col"><i class="fi-dish mt-n1 me-2 fs-lg align-middle"></i>Dishwasher</li>
+                <li class="col"><i class="fi-parking mt-n1 me-2 fs-lg align-middle"></i>Parking place</li>
+                <li class="col"><i class="fi-snowflake mt-n1 me-2 fs-lg align-middle"></i>Air conditioning</li>
+                <li class="col"><i class="fi-iron mt-n1 me-2 fs-lg align-middle"></i>Iron</li>
+                <li class="col"><i class="fi-tv mt-n1 me-2 fs-lg align-middle"></i>TV</li>
+                <li class="col"><i class="fi-laundry mt-n1 me-2 fs-lg align-middle"></i>Laundry</li>
+                <li class="col"><i class="fi-cctv mt-n1 me-2 fs-lg align-middle"></i>Security cameras</li>
+              </ul>
+              <div class="collapse" id="seeMoreAmenities" #amenitiescollapse="ngbCollapse" [(ngbCollapse)]="amenitiesColleaps">
+                <ul class="list-unstyled row row-cols-lg-3 row-cols-md-2 row-cols-1 gy-1 mb-1 text-nowrap">
+                  <li class="col"><i class="fi-no-smoke mt-n1 me-2 fs-lg align-middle"></i>No smocking</li>
+                  <li class="col"><i class="fi-pet mt-n1 me-2 fs-lg align-middle"></i>Cats</li>
+                  <li class="col"><i class="fi-swimming-pool mt-n1 me-2 fs-lg align-middle"></i>Swimming pool</li>
+                  <li class="col"><i class="fi-double-bed mt-n1 me-2 fs-lg align-middle"></i>Double bed</li>
+                  <li class="col"><i class="fi-bed mt-n1 me-2 fs-lg align-middle"></i>Single bed</li>
+                </ul>
+              </div><a class="collapse-label collapsed" href="javascript:void(0);" (click)="amenitiescollapse.toggle()"
+                       [attr.aria-expanded]="!amenitiesColleaps" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="seeMoreAmenities"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</main>
+
+<!-- Footer-->
+<app-footer></app-footer>

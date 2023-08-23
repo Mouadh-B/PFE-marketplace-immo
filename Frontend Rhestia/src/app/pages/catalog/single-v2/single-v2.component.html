@@ -1,0 +1,249 @@
+<main class="page-wrapper">
+   Header
+  <app-header id="top"></app-header>
+
+  <!-- Page content-->
+  <section class="container mt-5 mb-lg-5 mb-4 pt-5 pb-lg-5">
+    <!-- Breadcrumb-->
+<!--    <app-breadcrumbs [breadcrumbItems]="breadCrumbItems"></app-breadcrumbs>-->
+    <h1 class="h2 mb-2">Property Details</h1>
+    <div class="row gy-5 pt-lg-2">
+      <div class="col-lg-7">
+        <div class="d-flex flex-column">
+          <!-- Carousel with slides count-->
+          <div class="order-lg-1 order-2 mb-4">
+            <swiper [config]="config" #usefulSwiper>
+              <div class="swiper-wrapper p-0">
+                <div class="swiper-slide" *ngFor="let data of apartmentsData">
+                  <div *ngIf="data.image"><img class="rounded-3" src="{{data.image}}" alt="Image"></div>
+                  <div class="ratio ratio-16x9" *ngIf="data.video">
+                    <youtube-player [videoId]="id" (ready)="savePlayer($event)" (change)="onStateChange($event)"
+                      class="youtube-video"></youtube-player>
+                  </div>
+                </div>
+              </div>
+            </swiper>
+            <!-- Thumbnails nav-->
+            <ul class="tns-thumbnails mb-4" id="thumbnails">
+              <li class="tns-thumbnail swiperlist" *ngFor="let data of apartmentsData;let i = index"
+                (click)="slidePreview(i,$event)">
+                <img src="{{data.image}}" alt="Thumbnail" *ngIf="data.image">
+<!--                <div class="d-flex flex-column align-items-center justify-content-center h-100" *ngIf="data.video"><i-->
+<!--                    class="fi-play-circle fs-4 mb-1"></i><span>Play video</span></div>-->
+              </li>
+            </ul>
+          </div>
+          <!-- Page title + Features-->
+          <div class="order-lg-2 order-1">
+            <h1 class="h2 mb-2">For Sale</h1>
+            <p class="mb-2 pb-1 fs-lg">500000 DT</p>
+            <h1 class="h2 mb-2">House manar </h1>
+            <p class="mb-2 pb-1 fs-lg">Tunis Manar Jardins d'el menzah1</p>
+
+            <ul class="d-flex mb-4 pb-lg-2 list-unstyled">
+              <li class="me-3 pe-3 border-end"><b class="me-1">3</b><i
+                  class="fi-bed mt-n1 lead align-middle text-muted"></i></li>
+              <li class="me-3 pe-3 border-end"><b class="me-1">2</b><i
+                  class="fi-bath mt-n1 lead align-middle text-muted"></i></li>
+              <li class="me-3 pe-3 border-end"><b class="me-1">0</b><i
+                  class="fi-car mt-n1 lead align-middle text-muted"></i></li>
+              <li><b>200 </b>sq.m</li>
+            </ul>
+<!--            <div class="text-end">-->
+<!--              <h3 class="h5 mb-2">For Sale</h3>-->
+<!--              <h2 class="h3 mb-4 pb-2">500000 DT</h2>-->
+<!--            </div>-->
+          </div>
+
+        </div>
+        <!-- Overview-->
+        <h2 class="h5">Description</h2>
+        <p class="mb-4 pb-2">New house located in Manar 1 near to vero gusto </p>
+<!--        &lt;!&ndash; Rental agent&ndash;&gt;-->
+<!--        <h2 class="h5">Rental agent</h2>-->
+<!--        <div class="card card-horizontal">-->
+<!--          <div class="card-img-top bg-position-center-x"-->
+<!--            style="background-image: url(assets/img/real-estate/agents/01.jpg);"></div>-->
+<!--          <blockquote class="blockquote card-body p-4">-->
+<!--            <p class="mb-4">Amet libero morbi venenatis ut est. Iaculis leo ultricies nunc id ante adipiscing. Vel metus-->
+<!--              odio at faucibus ac. Neque id placerat et id ut.</p>-->
+<!--            <footer class="d-flex justify-content-between">-->
+<!--              <div class="pe-3">-->
+<!--                <h6 class="mb-0">Kristin Watson</h6>-->
+<!--                <div class="text-muted fw-normal fs-sm mb-3">Imperial Property Group Agent</div><a-->
+<!--                  class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"-->
+<!--                  href="javascript:void(0);"><i class="fi-facebook"></i></a><a-->
+<!--                  class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"-->
+<!--                  href="javascript:void(0);"><i class="fi-twitter"></i></a><a-->
+<!--                  class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle me-2 mb-2"-->
+<!--                  href="javascript:void(0);"><i class="fi-instagram"></i></a>-->
+<!--              </div>-->
+<!--              <div><span class="star-rating"><i class="star-rating-icon fi-star-filled active"></i><i-->
+<!--                    class="star-rating-icon fi-star-filled active"></i><i-->
+<!--                    class="star-rating-icon fi-star-filled active"></i><i-->
+<!--                    class="star-rating-icon fi-star-filled active"></i><i-->
+<!--                    class="star-rating-icon fi-star-filled active"></i></span>-->
+<!--                <div class="text-muted fs-sm mt-1">24 reviews</div>-->
+<!--              </div>-->
+<!--            </footer>-->
+<!--          </blockquote>-->
+<!--        </div>-->
+<!--      </div>-->
+      <!-- Sidebar with details-->
+
+      </div>
+      <aside class="col-lg-5">
+        <div class="ps-lg-5">
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            &lt;!&ndash;            <div><span class="badge bg-success me-2 mb-2">Verified</span><span&ndash;&gt;-->
+<!--            &lt;!&ndash;                class="badge bg-info me-2 mb-2">New</span></div>&ndash;&gt;-->
+<!--            <div class="text-nowrap">-->
+<!--&lt;!&ndash;              <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button"&ndash;&gt;-->
+<!--&lt;!&ndash;                      placement="top" ngbTooltip="Add to Wishlist"><i class="fi-heart"></i></button>&ndash;&gt;-->
+<!--              <div class="dropdown d-inline-block" data-bs-toggle="tooltip" title="Share" placement="top"-->
+<!--                   ngbTooltip="Share">-->
+<!--                <button class="btn btn-icon btn-light-primary btn-xs shadow-sm rounded-circle ms-2 mb-2" type="button"-->
+<!--                        data-bs-toggle="dropdown"><i class="fi-share"></i></button>-->
+<!--                <div class="dropdown-menu dropdown-menu-end my-1">-->
+<!--                  <button class="dropdown-item" type="button"><i-->
+<!--                    class="fi-facebook fs-base opacity-75 me-2"></i>Facebook</button>-->
+<!--                  <button class="dropdown-item" type="button"><i-->
+<!--                    class="fi-twitter fs-base opacity-75 me-2"></i>Twitter</button>-->
+<!--                  <button class="dropdown-item" type="button"><i-->
+<!--                    class="fi-instagram fs-base opacity-75 me-2"></i>Instagram</button>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="swiper-slide" *ngFor="let data2 of newsData">-->
+          <div class="card border-0 bg-secondary mb-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="d-flex">
+                <img class="rounded-circle" src="assets/img/avatars/06.jpg" width="48">
+                <div class="ps-2">
+                  <h6 class="fs-base text-nav lh-base mb-2">khouloud jelassi</h6>
+                  <div class="d-flex text-body fs-sm">
+                    <span><i class="fi-calendar-alt opacity-60 mt-n1 me-1"></i>26 June 2023</span>&nbsp;&nbsp;
+                    <span><i class="fi-phone opacity-60 mt-n1 me-1"></i>&nbsp;20123456</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+
+          <!-- Property details-->
+          <div class="card border-0 bg-secondary mb-4">
+            <div class="card-body">
+              <h5 class="mb-0 pb-3">Property Details</h5>
+              <ul class="list-unstyled mt-n2 mb-0">
+                <li class="mt-2 mb-0"><b>Type: </b>House</li>
+                <li class="mt-2 mb-0"><b>Apartment area: </b>200 sq.m</li>
+<!--                <li class="mt-2 mb-0"><b>Built: </b>2023</li>-->
+                <li class="mt-2 mb-0"><b>Bedrooms: </b>3</li>
+                <li class="mt-2 mb-0"><b>Bathrooms: </b>2</li>
+                <li class="mt-2 mb-0"><b>Parking places: </b>0</li>
+<!--                <li class="mt-2 mb-0"><b>Pets allowed: </b>cats only</li>-->
+              </ul>
+            </div>
+          </div>
+          <!-- Amenities-->
+          <div class="card border-0 bg-secondary mb-4">
+            <div class="card-body">
+              <h5>Amenities</h5>
+              <ul class="list-unstyled row row-cols-sm-2 row-cols-1 gy-2 mb-0 text-nowrap">
+                <li class="col"><i class="fi-wifi mt-n1 me-2 fs-lg align-middle"></i>WiFi</li>
+                <li class="col"><i class="fi-thermometer mt-n1 me-2 fs-lg align-middle"></i>Heating</li>
+                <li class="col"><i class="fi-dish mt-n1 me-2 fs-lg align-middle"></i>Dishwasher</li>
+                <li class="col"><i class="fi-parking mt-n1 me-2 fs-lg align-middle"></i>Parking place</li>
+                <li class="col"><i class="fi-snowflake mt-n1 me-2 fs-lg align-middle"></i>Air conditioning</li>
+                <li class="col"><i class="fi-iron mt-n1 me-2 fs-lg align-middle"></i>Iron</li>
+                <li class="col"><i class="fi-tv mt-n1 me-2 fs-lg align-middle"></i>TV</li>
+                <li class="col"><i class="fi-laundry mt-n1 me-2 fs-lg align-middle"></i>Laundry</li>
+                <li class="col"><i class="fi-cctv mt-n1 me-2 fs-lg align-middle"></i>Security cameras</li>
+                <li class="col"><i class="fi-no-smoke mt-n1 me-2 fs-lg align-middle"></i>No smocking</li>
+              </ul>
+              <div class="collapse" id="seeMoreAmenities" #firstcollapse="ngbCollapse" [(ngbCollapse)]="firstColleaps">
+                <ul class="list-unstyled row row-cols-sm-2 row-cols-1 gy-2 pt-2 mb-0 text-nowrap">
+                  <li class="col"><i class="fi-double-bed mt-n1 me-2 fs-lg align-middle"></i>Double bed</li>
+                  <li class="col"><i class="fi-bed mt-n1 me-2 fs-lg align-middle"></i>Single bed</li>
+                </ul>
+              </div><a class="collapse-label collapsed d-inline-block mt-3" href="javascript:void(0);"
+                       (click)="firstcollapse.toggle()" [attr.aria-expanded]="!firstColleaps" data-bs-toggle="collapse"
+                       data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button"
+                       aria-expanded="false" aria-controls="seeMoreAmenities"></a>
+            </div>
+          </div>
+          <!--          &lt;!&ndash; Not included in rent&ndash;&gt;-->
+          <!--          <div class="card border-0 bg-secondary mb-4">-->
+          <!--            <div class="card-body">-->
+          <!--              <h5>Not included in rent</h5>-->
+          <!--              <ul class="list-unstyled row row-cols-md-2 row-cols-1 gy-2 mb-0 text-nowrap">-->
+          <!--                <li class="col"><i class="fi-swimming-pool mt-n1 me-2 fs-lg align-middle"></i>Swimming pool</li>-->
+          <!--                <li class="col"><i class="fi-cafe mt-n1 me-2 fs-lg align-middle"></i>Restaurant</li>-->
+          <!--                <li class="col"><i class="fi-spa mt-n1 me-2 fs-lg align-middle"></i>Spa lounge</li>-->
+          <!--                <li class="col"><i class="fi-cocktail mt-n1 me-2 fs-lg align-middle"></i>Bar</li>-->
+          <!--              </ul>-->
+          <!--            </div>-->
+          <!--          </div>-->
+          <!-- Post meta-->
+          <ul class="d-flex mb-4 list-unstyled fs-md">
+            <li class="me-3 pe-3 border-end">Published: <b>June 26 , 2023</b></li>
+            <!--            <li class="me-3 pe-3 border-end">Ad number: <b>681013232</b></li>-->
+            <!--            <li class="me-3 pe-3">Views: <b>48</b></li>-->
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+<!--  &lt;!&ndash; Recently viewed&ndash;&gt;-->
+<!--  <section class="container mb-5 pb-2 pb-lg-4">-->
+<!--    <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--      <h2 class="h3">Recently viewed</h2><a class="btn btn-link fw-normal p-0" routerLink="/catalog/rent">View all<i-->
+<!--          class="fi-arrow-long-right ms-2"></i></a>-->
+<!--    </div>-->
+<!--    <div class="swiper default-swiper rounded">-->
+<!--      <swiper [config]="recently">-->
+<!--        <div class="swiper-wrapper">-->
+<!--          <div class="swiper-slide" *ngFor="let data of recentlyData">-->
+<!--            &lt;!&ndash; Item&ndash;&gt;-->
+<!--            <div class="col p-2">-->
+<!--              <div class="card shadow-sm card-hover border-0 h-100">-->
+<!--                <div class="card-img-top card-img-hover"><a class="img-overlay" routerLink="/catalog/single-v2"></a>-->
+<!--                  <div class="content-overlay end-0 top-0 pt-3 pe-3">-->
+<!--                    <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle" type="button"-->
+<!--                      placement="left" ngbTooltip="Add to Wishlist"><i class="fi-heart"></i></button>-->
+<!--                  </div><img src="{{data.image}}" alt="Image">-->
+<!--                </div>-->
+<!--                <div class="card-body position-relative pb-3">-->
+<!--                  <h4 class="mb-1 fs-xs fw-normal text-uppercase text-primary">{{data.sale}}</h4>-->
+<!--                  <h3 class="h6 mb-2 fs-base"><a class="nav-link stretched-link"-->
+<!--                      routerLink="/catalog/single-v2">{{data.title}}</a></h3>-->
+<!--                  <p class="mb-2 fs-sm text-muted">{{data.content}}</p>-->
+<!--                  <div class="fw-bold"><i class="fi-cash mt-n1 me-2 lead align-middle opacity-70"></i>{{data.price}}-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="card-footer d-flex align-items-center justify-content-center mx-3 pt-3 text-nowrap"><span-->
+<!--                    class="d-inline-block mx-1 px-2 fs-sm">{{data.bad}}<i-->
+<!--                      class="fi-bed ms-1 mt-n1 fs-lg text-muted"></i></span><span-->
+<!--                    class="d-inline-block mx-1 px-2 fs-sm">{{data.bath}}<i-->
+<!--                      class="fi-bath ms-1 mt-n1 fs-lg text-muted"></i></span><span-->
+<!--                    class="d-inline-block mx-1 px-2 fs-sm">{{data.car}}<i-->
+<!--                      class="fi-car ms-1 mt-n1 fs-lg text-muted"></i></span></div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Item&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="swiper-pagination"></div>-->
+<!--      </swiper>-->
+<!--    </div>-->
+<!--  </section>-->
+
+</main>
+<!-- Footer-->
+<app-footer></app-footer>
